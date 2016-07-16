@@ -16,6 +16,10 @@ public class Teacher {
         this.status = status;
     }
 
+    public static Teacher of(String name, ICMCDepartment department, TeacherStatus status) {
+        return new Teacher(name, department, status);
+    }
+
     public String getName() {
         return name;
     }

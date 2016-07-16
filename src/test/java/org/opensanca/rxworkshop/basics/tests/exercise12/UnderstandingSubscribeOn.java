@@ -4,6 +4,7 @@ import org.junit.Test;
 import org.opensanca.rxworkshop.basics.icmc.ICMCTeachers;
 import org.opensanca.rxworkshop.basics.util.ThreadUtils;
 import rx.Observable;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by ubiratansoares for RxJava Workshop.
@@ -14,7 +15,7 @@ public class UnderstandingSubscribeOn {
     @Test public void run() {
 
         Observable.from(ICMCTeachers.names())
-                // TODO apply subscribeOn
+                .subscribeOn(Schedulers.computation())
                 .doOnNext(ThreadUtils::printFromThread)
                 .subscribe();
 

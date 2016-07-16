@@ -1,6 +1,10 @@
 package org.opensanca.rxworkshop.basics.tests.exercise15;
 
 import org.junit.Test;
+import org.opensanca.rxworkshop.basics.util.ThreadUtils;
+import rx.Observable;
+import rx.functions.Action1;
+import rx.schedulers.Schedulers;
 
 import java.util.Arrays;
 import java.util.List;
@@ -21,6 +25,20 @@ public class PlayingWithMergeOperator {
         // Create observable sequence that prints SP teams at random intervals
         // Create observable sequence that prints RJ teams at random intervals
         // Apply merge to these sequences
+
+
+
+        Observable<String> spobs = Observable.from(sp)
+                .subscribeOn(Schedulers.computation())
+                .doOnNext(this::printAndSleep);
+        Observable<String> rjobs =Observable.from(rj)
+                        .subscribeOn(Schedulers.io())
+                        .doOnNext(this::printAndSleep);
+
+        Observable.merge(spobs, rjobs)
+                .subscribe();
+
+        ThreadUtils.waitForResults(20000);
 
     }
 

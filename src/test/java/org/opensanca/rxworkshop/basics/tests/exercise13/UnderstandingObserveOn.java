@@ -3,6 +3,8 @@ package org.opensanca.rxworkshop.basics.tests.exercise13;
 import org.junit.Test;
 import org.opensanca.rxworkshop.basics.util.ThreadUtils;
 import rx.Observable;
+import rx.Scheduler;
+import rx.schedulers.Schedulers;
 
 /**
  * Created by ubiratansoares for RxJava Workshop.
@@ -14,8 +16,9 @@ public class UnderstandingObserveOn {
 
         Observable.range(1, 5)
                 // TODO apply observeOn
+                .observeOn(Schedulers.computation())
                 .doOnNext(integer -> ThreadUtils.printFromThread(integer * 2))
-                // TODO apply observeOn
+                .observeOn(Schedulers.computation())
                 .doOnNext(integer -> ThreadUtils.printFromThread(integer * 10))
                 .subscribe();
 

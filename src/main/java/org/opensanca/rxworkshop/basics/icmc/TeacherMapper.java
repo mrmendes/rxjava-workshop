@@ -10,7 +10,7 @@ public class TeacherMapper {
         TeacherStatus status = mappedStatus(name);
         ICMCDepartment department = mappedDepartment(name);
         Teacher t = new Teacher(name, department, status);
-        System.out.println(t.toString());
+//        System.out.println(t.toString());
         return t;
     }
 
